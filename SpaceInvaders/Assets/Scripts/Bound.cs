@@ -17,7 +17,6 @@ public class Bound : MonoBehaviour
             if (isDefeat) GameManager.Instance.EndGame(false);
             else
             {
-                // Send enemy movement command (By calling a method on enemy that adds actions to the pile with a preset action from enemy)
                 List<CustomAction> movements = new List<CustomAction>();
 
                 movements.Add(new MovementAction(enemy.moveDown, enemy.transform));

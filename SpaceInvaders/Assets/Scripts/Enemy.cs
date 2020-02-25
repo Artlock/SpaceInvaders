@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        // VFX here maybe?
+    }
+
     public void QueueActions(List<CustomAction> actions, bool overrideActions = true)
     {
         if (overrideActions)

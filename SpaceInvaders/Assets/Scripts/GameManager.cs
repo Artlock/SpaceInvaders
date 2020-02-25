@@ -18,9 +18,14 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         if (Instance != null)
-            Instance = this;
-        else
+        {
+            Destroy(this);
             return;
+        } 
+        else
+        {
+            Instance = this;
+        }
     }
 
     public void EndGame(bool victory)
