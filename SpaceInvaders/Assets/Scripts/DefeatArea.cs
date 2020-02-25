@@ -7,7 +7,7 @@ public class DefeatArea : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.attachedRigidbody.GetComponent<Enemy>();
+        Enemy enemy = other.attachedRigidbody?.GetComponent<Enemy>();
 
         if (enemy != null)
         {

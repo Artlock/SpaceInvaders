@@ -25,13 +25,13 @@ public class Player : MonoBehaviour
         direction = Vector3.zero;
 
         // Movement
-        if (Input.GetKeyDown(KeyCode.Q)) // Left
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow)) // Left
         {
-            direction = Vector3.right;
+            direction += Vector3.left;
         }
-        if (Input.GetKeyDown(KeyCode.D)) // Right
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) // Right
         {
-            direction = Vector3.left;
+            direction += Vector3.right;
         }
 
         transform.position += direction * speed * Time.deltaTime;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     public void Shooting()
     {
         // Shooting
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > (lastShotTime + cooldown))
+        if (Input.GetKey(KeyCode.Space) && Time.time > (lastShotTime + cooldown))
         {
             lastShotTime = Time.time;
 
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
+        Enemy enemy = other.attachedRigidbody?.GetComponent<Enemy>();
 
         if (enemy != null)
         {

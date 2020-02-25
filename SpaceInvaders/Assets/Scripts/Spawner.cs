@@ -16,6 +16,12 @@ public class Spawner : MonoBehaviour
 
     private float lastSpawnTime = 0f;
 
+    private void Awake()
+    {
+        // To allow for instant start
+        lastSpawnTime = -Mathf.Lerp(spawnDelayMax, spawnDelayMin, difficultyCurve.Evaluate(Time.timeSinceLevelLoad / timeToMin));
+    }
+
     private void Update()
     {
         if (Time.timeSinceLevelLoad > (lastSpawnTime + Mathf.Lerp(spawnDelayMax, spawnDelayMin, difficultyCurve.Evaluate(Time.timeSinceLevelLoad / timeToMin))))

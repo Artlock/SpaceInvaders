@@ -11,9 +11,17 @@ public class TimeManager : MonoBehaviour
     private void Awake()
     {
         if (Instance != null)
-            Instance = this;
-        else
+        {
+            Destroy(this);
             return;
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        // By default, timescale is 1f
+        ChangeTimescale(1f, false);
     }
 
     public void ChangeTimescale(float target, bool shouldLerp = true, float lerpDuration = 1f) // Lerp by default

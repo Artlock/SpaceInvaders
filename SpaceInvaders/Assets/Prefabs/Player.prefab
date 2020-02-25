@@ -62,9 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b20a1a0a58ab8641bc50120ba1de174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1220131630923776819, guid: 593760b9c1676d24d9e4af295ea8ae25,
+    type: 3}
   bulletsContainer: {fileID: 0}
-  speed: 4
+  speed: 12
   cooldown: 1
 --- !u!1 &1526636451509950538
 GameObject:

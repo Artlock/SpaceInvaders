@@ -13,11 +13,16 @@ public class Loader : MonoBehaviour
     {
         if (Instance != null)
         {
+            Destroy(this);
+            return;
+        }
+        else
+        {
             Instance = this;
             DontDestroyOnLoad(this);
         }
-        else
-            return;
+
+        Reload(); // Initial game loading
     }
 
     public void Reload()

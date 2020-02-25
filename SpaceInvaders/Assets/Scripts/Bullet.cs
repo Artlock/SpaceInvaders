@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Bullet : MonoBehaviour
 {
+    public float speed = 6f;
+
     private Vector3 direction = Vector3.zero;
-    private float speed = 1f;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
+        Enemy enemy = other.attachedRigidbody?.GetComponent<Enemy>();
 
         if (enemy != null)
         {
