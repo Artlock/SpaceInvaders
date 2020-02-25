@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletsContainer;
 
+    public Collider playableArea;
+
     public float speed = 4f;
     public float cooldown = 1f;
 
@@ -34,7 +36,10 @@ public class Player : MonoBehaviour
             direction += Vector3.right;
         }
 
-        transform.position += direction * speed * Time.deltaTime;
+        if (playableArea.bounds.Contains(transform.position + direction * speed * Time.deltaTime))
+        {
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
 
     public void Shooting()
