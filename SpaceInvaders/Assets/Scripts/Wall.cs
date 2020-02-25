@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Wall : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Bullet bullet = other.GetComponent<Bullet>();
+        Bullet bullet = collision.rigidbody.GetComponent<Bullet>();
 
         if (bullet != null)
         {

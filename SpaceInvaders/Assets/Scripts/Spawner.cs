@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public static Spawner Instance { get; private set; }
-
     public GameObject enemyPrefab;
     public Transform enemyContainer;
 
@@ -18,23 +16,12 @@ public class Spawner : MonoBehaviour
 
     private float lastSpawnTime = 0f;
 
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-
-        Instance = this;
-    }
-
     private void Update()
     {
         if (Time.timeSinceLevelLoad > (lastSpawnTime + Mathf.Lerp(spawnDelayMax, spawnDelayMin, difficultyCurve.Evaluate(Time.timeSinceLevelLoad / timeToMin))))
         {
             // Instantiate (Will start moving in update)
-            GameObject enemy = Instantiate(enemyPrefab, enemyContainer.transform);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity, enemyContainer.transform);
             Enemy enemyCmp = enemy.GetComponent<Enemy>();
 
             // Set movement direction (Default to right)
@@ -49,6 +36,8 @@ public class Spawner : MonoBehaviour
             }
 
             enemyCmp.QueueActions(movements, true);
+
+            lastSpawnTime = Time.timeSinceLevelLoad;
         }
     }
 }

@@ -22,8 +22,8 @@ public class MovementAction : CustomAction
 
     public override void Update()
     {
-        transform.position += settings.direction * settings.speed;
-        moved += (settings.direction * settings.speed).magnitude;
+        transform.position += settings.direction * settings.speed * Time.deltaTime;
+        moved += (settings.direction * settings.speed).magnitude * Time.deltaTime;
     }
 
     public override void End()

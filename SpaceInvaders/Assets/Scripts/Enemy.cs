@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         {
             actionList.Clear();
 
-            if (currentAction.IsDone())
+            if (currentAction != null && currentAction.IsDone())
                 currentAction.End();
 
             currentAction = null;

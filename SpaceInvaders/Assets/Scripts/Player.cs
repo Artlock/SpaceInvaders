@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour
 {
     public GameObject bulletPrefab;
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
             direction = Vector3.left;
         }
 
-        transform.position += direction * speed;
+        transform.position += direction * speed * Time.deltaTime;
     }
 
     public void Shooting()
@@ -46,7 +45,7 @@ public class Player : MonoBehaviour
             lastShotTime = Time.time;
 
             // Instantiate (Will shoot in awake)
-            Instantiate(bulletPrefab, bulletsContainer.transform);
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform);
         }
     }
 

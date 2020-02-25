@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.position += direction * speed;
+        transform.position += direction * speed * Time.deltaTime;
     }
 
     public void Shoot(Vector3 dir, float spd)
