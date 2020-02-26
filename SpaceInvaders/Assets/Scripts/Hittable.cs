@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,10 +14,13 @@ public enum Team
 public class Hittable : MonoBehaviour
 {
     public Team team;
-    public UnityEvent OnDestroy;
+    public HitEvent OnHit;
 
-    public void Destroy()
+    public void Hit(float dmg)
     {
-        OnDestroy?.Invoke();
+        OnHit?.Invoke(dmg);
     }
 }
+
+[Serializable]
+public class HitEvent : UnityEvent<float> { }

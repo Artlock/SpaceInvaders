@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 6f;
+    public float damagePerShot = 10f;
     public List<Team> ignoreTeams = new List<Team>();
 
     private Vector3 direction = Vector3.zero;
@@ -34,7 +35,7 @@ public class Bullet : MonoBehaviour
                 return;
         }
 
-        hittable.Destroy();
+        hittable.Hit(damagePerShot);
         Destroy(gameObject);
     }
 }

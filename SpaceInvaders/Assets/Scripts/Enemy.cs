@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     // Shooting related
     public float cooldown = 1f;
+    public float damagePerShot = 10f;
     public float chanceToShoot = 0.1f;
     private float lastShotTime = 0f;
 
@@ -76,6 +77,7 @@ public class Enemy : MonoBehaviour
             // Instantiate (Will shoot in awake)
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
+            blt.damagePerShot = damagePerShot;
             blt.Shoot(Vector3.down);
         }
     }

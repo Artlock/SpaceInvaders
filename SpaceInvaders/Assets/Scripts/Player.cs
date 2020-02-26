@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private Vector3 direction = Vector3.zero;
 
     // Shooting related
+    public float damagePerShot = 10f;
     public float cooldown = 1f;
     private float lastShotTime = 0f;
 
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
             // Instantiate (Will shoot in awake)
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
+            blt.damagePerShot = damagePerShot;
             blt.Shoot(Vector3.up);
         }
     }
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
 
         if (enemy != null)
         {
-            hittable.Destroy();
+            hittable.Hit(Mathf.Infinity);
         }
     }
 }
