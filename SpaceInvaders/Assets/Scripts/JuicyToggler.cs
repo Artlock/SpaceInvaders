@@ -9,7 +9,7 @@ public class JuicyToggler : MonoBehaviour
     public Juicy.Features feature;
     public ToggleEvent OnToggleChange;
 
-    private bool toggleState = false;
+    public bool toggleState { get; private set; } = false;
 
     private void Awake()
     {
