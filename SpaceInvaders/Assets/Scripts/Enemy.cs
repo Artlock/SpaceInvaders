@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Hittable))]
 public class Enemy : MonoBehaviour
 {
-    public Queue<CustomAction> actionList = new Queue<CustomAction>();
-    public CustomAction currentAction = null;
+    private Queue<CustomAction> actionList = new Queue<CustomAction>();
+    private CustomAction currentAction = null;
+
+    public GameObject bulletPrefab;
+    public Transform bulletsContainer;
+    public Hittable hittable;
+
+    // Shooting related
+    public float cooldown = 1f;
+    public float chanceToShoot = 0.1f;
+    private float lastShotTime = 0f;
 
     [field: SerializeField] public MovementSettings moveRight { get; private set; }
     [field: SerializeField] public MovementSettings moveLeft { get; private set; }
@@ -21,6 +31,18 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update()
+    {
+        Movement();
+
+        Shooting();
+    }
+
+    private void OnDestroy()
+    {
+        // VFX here maybe?
+    }
+
+    private void Movement()
     {
         if (currentAction == null)
         {
@@ -42,9 +64,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void Shooting()
     {
-        // VFX here maybe?
+        // Shooting
+        if (Time.time > (lastShotTime + cooldown))
+        {
+            lastShotTime = Time.time;
+
+            if (Random.Range(0f, 1f) > chanceToShoot) return;
+
+            // Instantiate (Will shoot in awake)
+            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
+            blt.ignoreTeams.Add(hittable.team);
+            blt.Shoot(Vector3.down);
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     public void QueueActions(List<CustomAction> actions, bool overrideActions = true)

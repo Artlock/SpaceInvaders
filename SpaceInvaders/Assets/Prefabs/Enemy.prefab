@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 3694493041567730026}
   - component: {fileID: 3694493041567730029}
   - component: {fileID: 3694493041567730028}
+  - component: {fileID: 2426692737768621728}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -106,12 +107,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124bbae0e1a3f4d49bf6c601c3eb61ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1220131630923776819, guid: 593760b9c1676d24d9e4af295ea8ae25,
+    type: 3}
+  bulletsContainer: {fileID: 0}
+  hittable: {fileID: 2426692737768621728}
+  cooldown: 1
+  chanceToShoot: 0.1
   <moveRight>k__BackingField: {fileID: 11400000, guid: 5d9b608ac84c2624db923c77ae0adc7c,
     type: 2}
   <moveLeft>k__BackingField: {fileID: 11400000, guid: fd2c18bd09403a342a8ac39f91dc38d0,
     type: 2}
   <moveDown>k__BackingField: {fileID: 11400000, guid: b183435b67b3092428aa80178db6a709,
     type: 2}
+--- !u!114 &2426692737768621728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3694493041567730031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fafd474b822c3c449ce20984680d97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  OnDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3694493041567730028}
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3694493041983841861
 GameObject:
   m_ObjectHideFlags: 0

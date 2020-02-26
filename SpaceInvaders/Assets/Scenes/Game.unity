@@ -211,6 +211,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3694493041567730031, guid: f95d44e50393b404787ebbaba257df52,
     type: 3}
   enemyContainer: {fileID: 333665226}
+  bulletsContainer: {fileID: 1893369511}
   moveRight: 0
   spawnDelayMax: 3
   spawnDelayMin: 1
@@ -299,6 +300,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 3694493041567730031, guid: f95d44e50393b404787ebbaba257df52,
     type: 3}
   enemyContainer: {fileID: 333665226}
+  bulletsContainer: {fileID: 1893369511}
   moveRight: 1
   spawnDelayMax: 3
   spawnDelayMin: 1

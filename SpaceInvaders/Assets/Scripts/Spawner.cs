@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform enemyContainer;
+    public Transform bulletsContainer;
 
     public bool moveRight = true;
 
@@ -42,6 +43,8 @@ public class Spawner : MonoBehaviour
             }
 
             enemyCmp.QueueActions(movements, true);
+
+            enemyCmp.bulletsContainer = bulletsContainer;
 
             lastSpawnTime = Time.timeSinceLevelLoad;
         }

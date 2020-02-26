@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Hittable))]
 public class Player : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletsContainer;
-
     public Collider playableArea;
+    public Hittable hittable;
 
+    // Movement related
     public float speed = 4f;
-    public float cooldown = 1f;
-
     private Vector3 direction = Vector3.zero;
+
+    // Shooting related
+    public float cooldown = 1f;
     private float lastShotTime = 0f;
 
     public void Update()
@@ -24,9 +27,9 @@ public class Player : MonoBehaviour
 
     public void Movement()
     {
+        // Movement
         direction = Vector3.zero;
 
-        // Movement
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow)) // Left
         {
             direction += Vector3.left;
@@ -50,19 +53,27 @@ public class Player : MonoBehaviour
             lastShotTime = Time.time;
 
             // Instantiate (Will shoot in awake)
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform);
+            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
+            blt.ignoreTeams.Add(hittable.team);
+            blt.Shoot(Vector3.up);
         }
+    }
+
+    public void Die()
+    {
+        GameManager.Instance.EndGame(false);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody != null && !other.attachedRigidbody.CompareTag("Enemy")) return;
+        if (other.attachedRigidbody == null || !other.attachedRigidbody.CompareTag("Enemy")) return;
 
         Enemy enemy = other.attachedRigidbody?.GetComponent<Enemy>();
 
         if (enemy != null)
         {
-            GameManager.Instance.EndGame(false);
+            hittable.Destroy();
         }
     }
 }

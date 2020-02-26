@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody != null && !other.attachedRigidbody.CompareTag("Bullet")) return;
+        if (other.attachedRigidbody == null || !other.attachedRigidbody.CompareTag("Bullet")) return;
 
         Bullet bullet = other.attachedRigidbody?.GetComponent<Bullet>();
 
