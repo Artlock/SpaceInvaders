@@ -209,8 +209,10 @@ MonoBehaviour:
   bulletsContainer: {fileID: 0}
   hittable: {fileID: 2426692737768621728}
   cooldown: 1
+  bulletSpeed: 8
   damagePerShot: 10
   chanceToShoot: 0.1
+  shootSoundVolume: 0.15
   <moveRight>k__BackingField: {fileID: 11400000, guid: 5d9b608ac84c2624db923c77ae0adc7c,
     type: 2}
   <moveLeft>k__BackingField: {fileID: 11400000, guid: fd2c18bd09403a342a8ac39f91dc38d0,
@@ -256,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7719a3610534d14d912c175c3a2996c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 50
   OnDeath:
     m_PersistentCalls:
       m_Calls:
