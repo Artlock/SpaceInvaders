@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Hittable))]
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
     public GameObject bulletPrefab;
     public Transform bulletsContainer;
     public Collider playableArea;
@@ -26,6 +28,19 @@ public class Player : MonoBehaviour
     public float angleSideShots = 10f;
 
     public static event Action OnShoot;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     public void Update()
     {

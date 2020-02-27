@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private float lastShotTime = 0f;
     public float shootSoundVolume = 0.15f;
 
+    public bool shootAtPlayer = false;
+
     [field: SerializeField] public MovementSettings moveRight { get; private set; }
     [field: SerializeField] public MovementSettings moveLeft { get; private set; }
     [field: SerializeField] public MovementSettings moveDown { get; private set; }
@@ -83,6 +85,11 @@ public class Enemy : MonoBehaviour
             blt.team = hittable.team;
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
+
+            if (shootAtPlayer)
+            {
+                blt.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Player.Instance.transform.position - blt.transform.position).normalized);
+            }
 
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }

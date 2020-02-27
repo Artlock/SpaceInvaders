@@ -215,6 +215,7 @@ MonoBehaviour:
   damagePerShot: 10
   chanceToShoot: 0.1
   shootSoundVolume: 0.15
+  shootAtPlayer: 1
   <moveRight>k__BackingField: {fileID: 11400000, guid: 5d9b608ac84c2624db923c77ae0adc7c,
     type: 2}
   <moveLeft>k__BackingField: {fileID: 11400000, guid: fd2c18bd09403a342a8ac39f91dc38d0,
