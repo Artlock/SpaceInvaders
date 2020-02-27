@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     public Transform bulletsContainer;
     public Hittable hittable;
 
+    public GameObject explosionPrefab;
+
     // Shooting related
     public float cooldown = 1f;
     public float bulletSpeed = 8f;
@@ -19,6 +21,8 @@ public class Enemy : MonoBehaviour
     public float chanceToShoot = 0.1f;
     private float lastShotTime = 0f;
     public float shootSoundVolume = 0.15f;
+
+    public bool shootAtPlayer = false;
 
     [field: SerializeField] public MovementSettings moveRight { get; private set; }
     [field: SerializeField] public MovementSettings moveLeft { get; private set; }
@@ -78,9 +82,14 @@ public class Enemy : MonoBehaviour
 
             // Instantiate (Will shoot in awake)
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Vector3.down), bulletsContainer.transform).GetComponent<Bullet>();
-            blt.ignoreTeams.Add(hittable.team);
+            blt.team = hittable.team;
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
+
+            if (shootAtPlayer)
+            {
+                blt.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Player.Instance.transform.position - blt.transform.position).normalized);
+            }
 
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
@@ -89,6 +98,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         SoundManager.Instance.Play("EnemyExplode");
+        ParticleStartupManager.Instance.Spawn(explosionPrefab, transform.position, bulletsContainer);
         Destroy(gameObject);
     }
 
