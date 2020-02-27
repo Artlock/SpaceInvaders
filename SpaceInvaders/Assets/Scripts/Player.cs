@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
     private Vector3 direction = Vector3.zero;
 
     // Shooting related
+    public float cooldown = 0.15f;
+    public float bulletSpeed = 24f;
     public float damagePerShot = 10f;
-    public float cooldown = 1f;
     private float lastShotTime = 0f;
     public float shootSoundVolume = 1f;
+    public float angleSideShots = 10f;
 
     public void Update()
     {
@@ -58,6 +60,17 @@ public class Player : MonoBehaviour
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
             blt.damagePerShot = damagePerShot;
+            blt.speed = bulletSpeed;
+
+            blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0f, 0f, angleSideShots) * Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
+            blt.ignoreTeams.Add(hittable.team);
+            blt.damagePerShot = damagePerShot;
+            blt.speed = bulletSpeed;
+
+            blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0f, 0f, -angleSideShots) * Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
+            blt.ignoreTeams.Add(hittable.team);
+            blt.damagePerShot = damagePerShot;
+            blt.speed = bulletSpeed;
 
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
