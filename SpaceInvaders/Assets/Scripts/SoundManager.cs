@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Play(string name)
+    public void Play(string name, float volume = 1f)
     {
         if (!sfxToggler.toggleState) return;
 
@@ -65,7 +65,7 @@ public class SoundManager : MonoBehaviour
 
         if (sound != null)
         {
-            source.PlayOneShot(sound.clip);
+            source.PlayOneShot(sound.clip, volume);
         }
     }
 }

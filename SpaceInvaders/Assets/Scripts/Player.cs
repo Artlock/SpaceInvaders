@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float damagePerShot = 10f;
     public float cooldown = 1f;
     private float lastShotTime = 0f;
+    public float shootSoundVolume = 1f;
 
     public void Update()
     {
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
             blt.damagePerShot = damagePerShot;
             blt.Shoot(Vector3.up);
 
-            SoundManager.Instance.Play("PlayerShoot");
+            SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
     }
 

@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public float damagePerShot = 10f;
     public float chanceToShoot = 0.1f;
     private float lastShotTime = 0f;
+    public float shootSoundVolume = 0.15f;
 
     [field: SerializeField] public MovementSettings moveRight { get; private set; }
     [field: SerializeField] public MovementSettings moveLeft { get; private set; }
@@ -81,6 +82,8 @@ public class Enemy : MonoBehaviour
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
             blt.Shoot(Vector3.down);
+
+            SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
     }
 
