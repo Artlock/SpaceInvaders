@@ -5,11 +5,11 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     public Transform camTransform;
+    public JuicyToggler cameraToggle;
 
-    public float shakeDuration = 0.2f;
-    public float shakeAmount = 0.7f;
-
-    public float maxDistanceDelta = 0.1f;
+    public float shakeDuration = 0.1f;
+    public float shakeAmount = 0.1f;
+    public float maxDistanceDeltaDuringReset = 0.05f;
 
     private Vector3 originalPos;
     private float timeToShake;
@@ -40,12 +40,14 @@ public class CameraShake : MonoBehaviour
         else
         {
             timeToShake = 0f;
-            camTransform.localPosition = Vector3.MoveTowards(camTransform.localPosition, originalPos, maxDistanceDelta);
+            camTransform.localPosition = Vector3.MoveTowards(camTransform.localPosition, originalPos, maxDistanceDeltaDuringReset);
         }
     }
 
     public void Shake()
     {
+        if (!cameraToggle.toggleState) return;
+
         timeToShake = shakeDuration;
     }
 }
