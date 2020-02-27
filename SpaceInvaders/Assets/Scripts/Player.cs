@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public Collider playableArea;
     public Hittable hittable;
 
+    public GameObject explosionPrefab;
+
     // Movement related
     public float speed = 4f;
     private Vector3 direction = Vector3.zero;
@@ -83,6 +85,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         GameManager.Instance.EndGame(false);
+        ParticleStartupManager.Instance.Spawn(explosionPrefab, transform.position, bulletsContainer);
         Destroy(gameObject);
     }
 

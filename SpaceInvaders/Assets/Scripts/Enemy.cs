@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         SoundManager.Instance.Play("EnemyExplode");
-        Instantiate(explosionPrefab, transform.position + Vector3.back, Quaternion.identity, bulletsContainer);
+        ParticleStartupManager.Instance.Spawn(explosionPrefab, transform.position, bulletsContainer);
         Destroy(gameObject);
     }
 

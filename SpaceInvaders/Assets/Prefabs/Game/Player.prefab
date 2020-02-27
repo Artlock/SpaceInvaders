@@ -72,6 +72,8 @@ MonoBehaviour:
   bulletsContainer: {fileID: 0}
   playableArea: {fileID: 0}
   hittable: {fileID: 6593759352899873547}
+  explosionPrefab: {fileID: 8991731399455585939, guid: e2b9f5b957d6cc34c9e843d9eda7d7f9,
+    type: 3}
   speed: 12
   cooldown: 0.15
   bulletSpeed: 24
