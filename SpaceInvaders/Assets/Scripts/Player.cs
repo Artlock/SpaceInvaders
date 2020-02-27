@@ -63,17 +63,17 @@ public class Player : MonoBehaviour
 
             // Instantiate (Will shoot in awake)
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
-            blt.ignoreTeams.Add(hittable.team);
+            blt.team = hittable.team;
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 
             blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0f, 0f, angleSideShots) * Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
-            blt.ignoreTeams.Add(hittable.team);
+            blt.team = hittable.team;
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 
             blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0f, 0f, -angleSideShots) * Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
-            blt.ignoreTeams.Add(hittable.team);
+            blt.team = hittable.team;
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 

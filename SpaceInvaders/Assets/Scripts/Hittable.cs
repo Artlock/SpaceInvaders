@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public enum Team
 {
+    None,
     Enemy,
     Ally,
     Any

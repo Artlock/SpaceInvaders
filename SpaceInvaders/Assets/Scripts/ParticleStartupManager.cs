@@ -22,10 +22,11 @@ public class ParticleStartupManager : MonoBehaviour
         }
     }
 
-    public void Spawn(GameObject system, Vector3 position, Transform container)
+    public void Spawn(GameObject system, Vector3 position, Transform container = null)
     {
         if (!particleToggler.toggleState) return;
 
-        Instantiate(system, position + Vector3.back, Quaternion.identity, container);
+        if (container != null) Instantiate(system, position + Vector3.back, Quaternion.identity, container);
+        else Instantiate(system, position + Vector3.back, Quaternion.identity);
     }
 }
