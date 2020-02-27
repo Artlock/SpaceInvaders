@@ -208,17 +208,25 @@ MonoBehaviour:
     type: 3}
   bulletsContainer: {fileID: 0}
   hittable: {fileID: 2426692737768621728}
+  explosionPrefab: {fileID: 8991731399455585939, guid: e2b9f5b957d6cc34c9e843d9eda7d7f9,
+    type: 3}
+  enemyExplosionPrefab: {fileID: 7260905426781347536, guid: 9c88371a6cd13de4d9b2729af646b00c,
+    type: 3}
   cooldown: 1
   bulletSpeed: 8
   damagePerShot: 10
   chanceToShoot: 0.1
   shootSoundVolume: 0.15
+  shootAtPlayer: 0
   <moveRight>k__BackingField: {fileID: 11400000, guid: 5d9b608ac84c2624db923c77ae0adc7c,
     type: 2}
   <moveLeft>k__BackingField: {fileID: 11400000, guid: fd2c18bd09403a342a8ac39f91dc38d0,
     type: 2}
   <moveDown>k__BackingField: {fileID: 11400000, guid: b183435b67b3092428aa80178db6a709,
     type: 2}
+  scoreGainText: {fileID: 6540111531189719279, guid: a375225579afbf64ebf9990b8f7b7abb,
+    type: 3}
+  _scoreScript: {fileID: 0}
 --- !u!114 &2426692737768621728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7719a3610534d14d912c175c3a2996c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 10
   OnDeath:
     m_PersistentCalls:
       m_Calls:
