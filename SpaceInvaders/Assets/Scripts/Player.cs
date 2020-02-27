@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour
     private float lastShotTime = 0f;
     public float shootSoundVolume = 1f;
     public float angleSideShots = 10f;
+
+    public static event Action OnShoot;
 
     public void Update()
     {
@@ -72,6 +75,7 @@ public class Player : MonoBehaviour
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 
+            OnShoot?.Invoke();
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
     }
