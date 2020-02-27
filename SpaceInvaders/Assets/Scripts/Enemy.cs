@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     // Shooting related
     public float cooldown = 1f;
+    public float bulletSpeed = 8f;
     public float damagePerShot = 10f;
     public float chanceToShoot = 0.1f;
     private float lastShotTime = 0f;
@@ -78,12 +79,14 @@ public class Enemy : MonoBehaviour
             Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
             blt.damagePerShot = damagePerShot;
+            blt.speed = bulletSpeed;
             blt.Shoot(Vector3.down);
         }
     }
 
     public void Die()
     {
+        SoundManager.Instance.Play("EnemyExplode");
         Destroy(gameObject);
     }
 

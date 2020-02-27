@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
             blt.ignoreTeams.Add(hittable.team);
             blt.damagePerShot = damagePerShot;
             blt.Shoot(Vector3.up);
+
+            SoundManager.Instance.Play("PlayerShoot");
         }
     }
 

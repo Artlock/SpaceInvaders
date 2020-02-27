@@ -16,8 +16,10 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource source;
     public AudioSource musicSource;
+    public AudioSource thrustSource;
 
-    public AudioClip music;
+    public JuicyToggler sfxToggler;
+    public JuicyToggler musicToggler;
 
     public List<PlayableSound> sounds = new List<PlayableSound>();
 
@@ -34,14 +36,31 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Update()
     {
-        musicSource.clip = music;
-        musicSource.Play();
+        if (!musicToggler.toggleState)
+        {
+            musicSource.volume = 0f;
+        }
+        else
+        {
+            musicSource.volume = 1f;
+        }
+
+        if (!sfxToggler.toggleState)
+        {
+            thrustSource.volume = 0f;
+        }
+        else
+        {
+            thrustSource.volume = 1f;
+        }
     }
 
     public void Play(string name)
     {
+        if (!sfxToggler.toggleState) return;
+
         PlayableSound sound = sounds.Find(x => x.name == name);
 
         if (sound != null)

@@ -11,8 +11,9 @@ public class JuicyToggler : MonoBehaviour
 
     public bool toggleState { get; private set; } = false;
 
-    private void Awake()
+    private void Start()
     {
+        toggleState = Juicy.Instance.IsFeatureEnabled(feature);
         OnToggleChange?.Invoke(toggleState);
     }
 

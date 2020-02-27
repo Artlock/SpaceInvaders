@@ -74,7 +74,7 @@ MonoBehaviour:
   hittable: {fileID: 6593759352899873547}
   speed: 12
   damagePerShot: 10
-  cooldown: 1
+  cooldown: 0.15
 --- !u!114 &6593759352899873547
 MonoBehaviour:
   m_ObjectHideFlags: 0

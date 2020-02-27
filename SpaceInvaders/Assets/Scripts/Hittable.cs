@@ -18,6 +18,7 @@ public class Hittable : MonoBehaviour
 
     public void Hit(float dmg)
     {
+        SoundManager.Instance.Play("BulletHit");
         OnHit?.Invoke(dmg);
     }
 }

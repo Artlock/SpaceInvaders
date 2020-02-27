@@ -108,7 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657d3654d24734a458b832c28d599b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed: 24
+  damagePerShot: 10
+  ignoreTeams: 
 --- !u!54 &6086798457058495203
 Rigidbody:
   m_ObjectHideFlags: 0
