@@ -208,9 +208,13 @@ MonoBehaviour:
     type: 3}
   bulletsContainer: {fileID: 0}
   hittable: {fileID: 2426692737768621728}
+  explosionPrefab: {fileID: 8991731399455585939, guid: e2b9f5b957d6cc34c9e843d9eda7d7f9,
+    type: 3}
   cooldown: 1
+  bulletSpeed: 8
   damagePerShot: 10
   chanceToShoot: 0.1
+  shootSoundVolume: 0.15
   <moveRight>k__BackingField: {fileID: 11400000, guid: 5d9b608ac84c2624db923c77ae0adc7c,
     type: 2}
   <moveLeft>k__BackingField: {fileID: 11400000, guid: fd2c18bd09403a342a8ac39f91dc38d0,

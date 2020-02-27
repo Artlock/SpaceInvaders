@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     public Transform bulletsContainer;
     public Hittable hittable;
 
+    public GameObject explosionPrefab;
+
     // Shooting related
     public float cooldown = 1f;
     public float bulletSpeed = 8f;
@@ -89,6 +91,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         SoundManager.Instance.Play("EnemyExplode");
+        Instantiate(explosionPrefab, transform.position + Vector3.back, Quaternion.identity, bulletsContainer);
         Destroy(gameObject);
     }
 
