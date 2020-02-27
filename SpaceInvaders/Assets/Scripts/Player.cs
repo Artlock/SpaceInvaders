@@ -55,10 +55,9 @@ public class Player : MonoBehaviour
             lastShotTime = Time.time;
 
             // Instantiate (Will shoot in awake)
-            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
+            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Vector3.up), bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
             blt.damagePerShot = damagePerShot;
-            blt.Shoot(Vector3.up);
 
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }

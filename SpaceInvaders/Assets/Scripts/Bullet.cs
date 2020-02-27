@@ -9,16 +9,9 @@ public class Bullet : MonoBehaviour
     public float damagePerShot = 10f;
     public List<Team> ignoreTeams = new List<Team>();
 
-    private Vector3 direction = Vector3.zero;
-
     private void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-    }
-
-    public void Shoot(Vector3 dir)
-    {
-        direction = dir;
+        transform.position += transform.up * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

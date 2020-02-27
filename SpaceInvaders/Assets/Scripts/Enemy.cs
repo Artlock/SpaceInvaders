@@ -77,11 +77,10 @@ public class Enemy : MonoBehaviour
             if (Random.Range(0f, 1f) > chanceToShoot) return;
 
             // Instantiate (Will shoot in awake)
-            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.identity, bulletsContainer.transform).GetComponent<Bullet>();
+            Bullet blt = Instantiate(bulletPrefab, transform.position, Quaternion.LookRotation(Vector3.forward, Vector3.down), bulletsContainer.transform).GetComponent<Bullet>();
             blt.ignoreTeams.Add(hittable.team);
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
-            blt.Shoot(Vector3.down);
 
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
         }
