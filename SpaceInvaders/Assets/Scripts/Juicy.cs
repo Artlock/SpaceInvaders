@@ -41,6 +41,7 @@ public class Juicy : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
