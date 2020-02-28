@@ -4,30 +4,17 @@ using UnityEngine;
 
 public class ScoreScale : MonoBehaviour
 {
+    public float scaleDown = 1f;
 
-    public float initialValue;
-    public float scaleDown;
-
-    public float timeToMin;
-    public float timer;
-    void Start()
+    private void Update()
     {
-        
-    }
-
-
-    void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (transform.localScale.x >= 0)
+        if (transform.localScale != Vector3.zero)
         {
-            this.transform.localScale -= new Vector3(scaleDown, scaleDown, 0) * Time.deltaTime;
+            transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, scaleDown * Time.deltaTime);
         }
         else
         {
             Destroy(gameObject);
         }
-      
     }
 }

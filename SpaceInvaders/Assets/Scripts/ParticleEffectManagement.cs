@@ -8,7 +8,7 @@ public class ParticleEffectManagement : MonoBehaviour
 
     private float timeElapsed = 0f;
 
-    private void Awake()
+    private void Start()
     {
         ps.Play();
     }

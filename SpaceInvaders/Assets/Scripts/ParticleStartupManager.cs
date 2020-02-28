@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ParticleStartupManager : MonoBehaviour
 {
@@ -26,7 +27,15 @@ public class ParticleStartupManager : MonoBehaviour
     {
         if (!particleToggler.toggleState) return;
 
-        if (container != null) Instantiate(system, position + Vector3.back, Quaternion.identity, container);
-        else Instantiate(system, position + Vector3.back, Quaternion.identity);
+        if (container != null)
+        {
+            GameObject ga = Instantiate(system, position + Vector3.back, Quaternion.identity, container);
+            ga.GetComponent<ParticleSystem>().randomSeed = (uint)Random.Range(0, 9999999);
+        }
+        else
+        {
+            GameObject ga = Instantiate(system, position + Vector3.back, Quaternion.identity);
+            ga.GetComponent<ParticleSystem>().randomSeed = (uint)Random.Range(0, 9999999);
+        }
     }
 }

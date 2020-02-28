@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform bulletsContainer;
     public Collider playableArea;
     public Hittable hittable;
+    public HealthSystem healthSystem;
 
     public GameObject explosionPrefab;
 
@@ -92,8 +93,9 @@ public class Player : MonoBehaviour
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 
-            OnShoot?.Invoke();
             SoundManager.Instance.Play("PlayerShoot", shootSoundVolume);
+
+            OnShoot?.Invoke();
         }
     }
 
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.EndGame(false);
         ParticleStartupManager.Instance.Spawn(explosionPrefab, transform.position, bulletsContainer);
+
         Destroy(gameObject);
     }
 

@@ -9,7 +9,7 @@ public class CameraShake : MonoBehaviour
 
     public float shakeDuration = 0.1f;
     public float shakeAmount = 0.1f;
-    public float maxDistanceDeltaDuringReset = 0.05f;
+    public float maxDistanceDeltaDuringReset = 3f;
 
     private Vector3 originalPos;
     private float timeToShake;
@@ -21,7 +21,14 @@ public class CameraShake : MonoBehaviour
             camTransform = GetComponent<Transform>();
         }
 
-        Player.OnShoot += Shake;
+        //Player.OnShoot += Shake;
+        Enemy.OnDeath += Shake;
+    }
+
+    private void OnDestroy()
+    {
+        //Player.OnShoot -= Shake;
+        Enemy.OnDeath -= Shake;
     }
 
     private void OnEnable()
@@ -40,7 +47,7 @@ public class CameraShake : MonoBehaviour
         else
         {
             timeToShake = 0f;
-            camTransform.localPosition = Vector3.MoveTowards(camTransform.localPosition, originalPos, maxDistanceDeltaDuringReset);
+            camTransform.localPosition = Vector3.MoveTowards(camTransform.localPosition, originalPos, maxDistanceDeltaDuringReset * Time.deltaTime);
         }
     }
 

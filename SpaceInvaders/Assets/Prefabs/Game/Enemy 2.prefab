@@ -212,7 +212,7 @@ MonoBehaviour:
     type: 3}
   enemyExplosionPrefab: {fileID: 7260905426781347536, guid: 7c74dac28b79aae4aafa6978ecbcc7ca,
     type: 3}
-  cooldown: 1
+  cooldown: 2
   bulletSpeed: 8
   damagePerShot: 10
   chanceToShoot: 0.2
@@ -224,9 +224,6 @@ MonoBehaviour:
     type: 2}
   <moveDown>k__BackingField: {fileID: 11400000, guid: b183435b67b3092428aa80178db6a709,
     type: 2}
-  scoreGainText: {fileID: 6540111531189719279, guid: a375225579afbf64ebf9990b8f7b7abb,
-    type: 3}
-  _scoreScript: {fileID: 0}
 --- !u!114 &2426692737768621728
 MonoBehaviour:
   m_ObjectHideFlags: 0

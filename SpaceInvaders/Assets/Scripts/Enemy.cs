@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Hittable))]
 public class Enemy : MonoBehaviour
@@ -26,17 +28,16 @@ public class Enemy : MonoBehaviour
 
     public bool shootAtPlayer = false;
 
+    public static event Action OnDeath;
+
     [field: SerializeField] public MovementSettings moveRight { get; private set; }
     [field: SerializeField] public MovementSettings moveLeft { get; private set; }
     [field: SerializeField] public MovementSettings moveDown { get; private set; }
 
-    public GameObject scoreGainText;
-    public ScoreScript _scoreScript;
-    // Add actions:
     private void Start()
     {
         actionList.Enqueue(new MovementAction(moveRight, transform));
-        _scoreScript = GameObject.FindObjectOfType<ScoreScript>();
+
         // Example of how to override at runtime
         //moveRight = MovementSettings.CreateInstance(dir, spd, dist);
     }
@@ -46,11 +47,6 @@ public class Enemy : MonoBehaviour
         Movement();
 
         Shooting();
-    }
-
-    private void OnDestroy()
-    {
-        // VFX here maybe?
     }
 
     private void Movement()
@@ -90,7 +86,7 @@ public class Enemy : MonoBehaviour
             blt.damagePerShot = damagePerShot;
             blt.speed = bulletSpeed;
 
-            if (shootAtPlayer)
+            if (shootAtPlayer && Player.Instance != null)
             {
                 blt.transform.rotation = Quaternion.LookRotation(Vector3.forward, (Player.Instance.transform.position - blt.transform.position).normalized);
             }
@@ -101,28 +97,19 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        // Score related
 
-        // incrementing the score
-        ScoreScript.scoreValue += (50 * ScoreScript.multiplierValue);
-        ScoreScript.killCount++;
+        ScoreManager.Instance.IncreaseScore(transform.position, transform.rotation);
+        ScoreManager.Instance.IncreaseKillCount(transform.position, transform.rotation);
+
+        // Sounds, particules, gameobject destruction
 
         SoundManager.Instance.Play("EnemyExplode");
+
         ParticleStartupManager.Instance.Spawn(explosionPrefab, transform.position, bulletsContainer);
         ParticleStartupManager.Instance.Spawn(enemyExplosionPrefab, transform.position, bulletsContainer);
 
-        GameObject tempText = Instantiate(scoreGainText.gameObject, transform.position, transform.rotation);
-        tempText.transform.SetParent(_scoreScript.canvasWorld.transform,false);
-        tempText.GetComponent<Text>().text = ScoreScript.targetKillCount * ScoreScript.multiplierValue + "";
-
-        if (ScoreScript.killCount >= ScoreScript.targetKillCount)
-        {
-            GameObject tempMultiplierText = Instantiate(_scoreScript.multiplierText.gameObject, transform.position + _scoreScript.multiplierTextOffset, transform.rotation);
-            tempMultiplierText.transform.SetParent(_scoreScript.canvasWorld.transform,false);
-            tempMultiplierText.GetComponent<Text>().text = "x" + ScoreScript.multiplierValue+1;
-            Debug.Log("MULTI");
-        }
-        //Debug.Log(tempText.GetComponent<Text>().text);
-        
+        OnDeath?.Invoke();
 
         Destroy(gameObject);
     }

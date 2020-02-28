@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
 
     public float reloadGameDelay = 10f;
 
-    public event Action OnGameOver;
-    public event Action OnVictory;
+    public static event Action OnEndOfGame;
+    public static event Action OnGameOver;
+    public static event Action OnVictory;
 
     private bool gameEnded = false;
     private Coroutine endOfGame;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
         if (gameEnded) return; // Dont end twice
 
         gameEnded = true;
+
+        OnEndOfGame?.Invoke();
 
         if (victory) OnVictory?.Invoke();
         else OnGameOver?.Invoke();

@@ -9,7 +9,6 @@ public enum BulletType
     Ignore
 }
 
-[RequireComponent(typeof(Collider))]
 public class Bullet : MonoBehaviour
 {
     public GameObject explosionPrefab;
