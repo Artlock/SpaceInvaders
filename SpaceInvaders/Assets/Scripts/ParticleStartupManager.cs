@@ -30,12 +30,10 @@ public class ParticleStartupManager : MonoBehaviour
         if (container != null)
         {
             GameObject ga = Instantiate(system, position + Vector3.back, Quaternion.identity, container);
-            ga.GetComponent<ParticleSystem>().randomSeed = (uint)Random.Range(0, 9999999);
         }
         else
         {
             GameObject ga = Instantiate(system, position + Vector3.back, Quaternion.identity);
-            ga.GetComponent<ParticleSystem>().randomSeed = (uint)Random.Range(0, 9999999);
         }
     }
 }
